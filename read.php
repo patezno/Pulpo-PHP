@@ -16,6 +16,8 @@ $db = new DbManager();
 $conn = $db->getConnection();
 
 // read all records
+$filter = [];
+$option = [];
 $read = new MongoDBDriverQuery($filter, $option);
 
 //fetch records
