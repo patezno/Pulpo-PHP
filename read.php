@@ -10,8 +10,7 @@ include_once 'db.php';
 $dbname = 'pulpo';
 $collection = 'diario';
 
-
-//DB connection
+// DB connection
 $db = new DbManager();
 $conn = $db->getConnection();
 
@@ -20,7 +19,7 @@ $filter = [];
 $option = [];
 $read = new MongoDBDriverQuery($filter, $option);
 
-//fetch records
+// fetch records
 $records = $conn->executeQuery("$dbname.$collection", $read);
 
 echo json_encode(iterator_to_array($records));
