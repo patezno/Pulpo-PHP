@@ -15,7 +15,6 @@ try {
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($results);
-    header('Content-Type: application/json');
     $conn = null;
     echo $json;
 
