@@ -1,12 +1,14 @@
 <?php
 
 function insert() {
+    
     $dbhost = "localhost";
     $dbname = "pulpo";
     $dbusername = "patezno";
     $dbpassword = "";
 
     try {
+        
         $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
         $jsondata = file_get_contents('diario.json');
         $diario = json_decode($jsondata, true);

@@ -1,28 +1,27 @@
 <?php
 
-// required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+function read() {
 
-// Configuration
-$dbhost = 'localhost';
-$dbport = '27017';
+    $dbhost = "localhost";
+    $dbname = "pulpo";
+    $dbusername = "patezno";
+    $dbpassword = "";
 
-$conn = new MongoDB\Driver\Manager("mongodb://$dbhost:$dbport");
+    try {
 
-$dbname = 'pulpo';
-$collection = 'diario';
+        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+        $sql = "SELECT * FROM diario";
+        $sth = $conn->prepare($sql);
+        $rows = $sth->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+        echo json_encode(array('content' => $rows));
 
-// DB connection
-$conn = $conn->getConnection();
+    } catch (PDOException $e) {
+        echo 'No ha funcionado';
+        echo $e->getMessage();
+    }
 
-$filter = [];
-$option = [];
-$read = new MongoDB\Driver\Query($filter, $option);
+}
 
-// fetch records
-$records = $conn->executeQuery("$dbname.$collection", $read);
-
-echo json_encode(iterator_to_array($records));
+read();
 
 ?>
