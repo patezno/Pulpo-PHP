@@ -13,7 +13,7 @@ try {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($results);
     $conn = null;
-    return $json;
+    echo $json;
 
 } catch (PDOException $e) {
     echo 'No ha funcionado';
