@@ -10,10 +10,11 @@ function read() {
     try {
 
         $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
-        $sql = "SELECT * FROM diario";
-        $sth = $conn->prepare($sql);
-        $rows = $sth->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
-        echo json_encode(array('content' => $rows));
+        $statement = $conn->prepare("SELECT * FROM diario");
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($results);
+        return $json;
 
     } catch (PDOException $e) {
         echo 'No ha funcionado';
