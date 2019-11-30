@@ -2,7 +2,7 @@
 class DbManager {
 
 	// Database configuration
-	private $dbhost = '127.0.0.1';
+	private $dbhost = '192.168.56.1';
 	private $dbport = '27017';
 	private $conn;
 	
@@ -10,9 +10,9 @@ class DbManager {
         // Connecting to MongoDB
         try {
 			// Establish database connection
-            $this->conn = new MongoDBDriverManager('mongodb://'.$this->dbhost.':'.$this->dbport);
+            $this->conn = new MongoDB\Driver\Manager('mongodb://'.$this->dbhost.':'.$this->dbport);
         } catch (MongoDBDriverExceptionException $e) {
-            echo $e->getMessage();
+            echo $e -> getMessage();
 			echo nl2br("n");
         }
     }

@@ -4,20 +4,21 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// include database file
-include_once 'db.php';
+// Configuration
+$dbhost = 'localhost';
+$dbport = '27017';
+
+$conn = new MongoDB\Driver\Manager("mongodb://$dbhost:$dbport");
 
 $dbname = 'pulpo';
 $collection = 'diario';
 
 // DB connection
-$db = new DbManager();
-$conn = $db->getConnection();
+$conn = $conn->getConnection();
 
-// read all records
 $filter = [];
 $option = [];
-$read = new MongoDBDriverQuery($filter, $option);
+$read = new MongoDB\Driver\Query($filter, $option);
 
 // fetch records
 $records = $conn->executeQuery("$dbname.$collection", $read);
