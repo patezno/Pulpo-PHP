@@ -1,5 +1,8 @@
 <?php
 
+header('Access-Control-Allow-Origin: *'); 
+header('Content-Type: application/json');
+
 $dbhost = "localhost";
 $dbname = "pulpo";
 $dbusername = "patezno";
@@ -12,6 +15,7 @@ try {
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($results);
+    header('Content-Type: application/json');
     $conn = null;
     echo $json;
 
