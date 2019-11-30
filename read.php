@@ -12,8 +12,8 @@ try {
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($results);
-    echo $json;
     $conn = null;
+    return $json;
 
 } catch (PDOException $e) {
     echo 'No ha funcionado';
